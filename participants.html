@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificate Validation</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="certificate">
+        <h1 id="studentName"></h1>
+        <h1 id="collegeName"></h1>
+        
+        <div class="verified">
+            <img src="./Checkmark.png" alt="Verified Checkmark">
+            <p>Verified Successfully</p>
+            <img src="./logo sym.jpg">
+        </div>
+    </div>
+
+    <script>
+        function getNameParameter() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('name');
+        }
+
+        function updateStudentAndCollegeNames() {
+            const nameParameter = getNameParameter();
+            const studentData = {
+                'Mukesh': {
+                    studentName: 'Mukesh',
+                    collegeName: 'Panimalar Engineering College'
+                },
+                'Mukunth': {
+                    studentName: 'Mukunth',
+                    collegeName: 'Sairam Engineering College'
+                },
+                'Nagaraj': {
+                    studentName: 'Nagaraj',
+                    collegeName: 'Nagaraj Engineering College'
+                }
+            };
+
+            const studentNameElement = document.getElementById('studentName');
+            const collegeNameElement = document.getElementById('collegeName');
+
+            if (nameParameter && studentData[nameParameter]) {
+                const { studentName, collegeName } = studentData[nameParameter];
+                studentNameElement.innerText = studentName;
+                collegeNameElement.innerText = collegeName;
+            } else {
+                studentNameElement.innerText = 'Invalid Name';
+                collegeNameElement.innerText = '';
+            }
+        }
+
+        window.onload = updateStudentAndCollegeNames;
+    </script>
+</body>
+</html>
